@@ -17,9 +17,18 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'name2' => $this->faker->name(),
-            'email2' => $this->faker->unique()->safeEmail(),
-            'password2' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+
+            'title' => $this->faker->name(),
+            'author' => $this->faker->name(),
+            'year' => $this->faker->year(),
+            'genre' => $this->faker->name(),
+            'cover-image' => $this->faker->image(),
+            'pages' => $this->faker->numberBetween(80,525),
+            'description' => $this->faker->name(),
+            'collection' => $this->faker->name(),
+            'publishing-house' => $this->faker->name(),
+            'edition' => $this->faker->numberBetween(1,50),
+            
         ];
     }
 }
