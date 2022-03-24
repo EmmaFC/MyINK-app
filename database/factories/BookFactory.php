@@ -22,11 +22,11 @@ class BookFactory extends Factory
             'author' => $this->faker->name(),
             'year' => $this->faker->year(),
             'genre' => $this->faker->name(),
-            'cover-image' => $this->faker->image(),
+            'cover' => 'https://picsum.photos/200/300',
             'pages' => $this->faker->numberBetween(80,525),
             'description' => $this->faker->name(),
             'collection' => $this->faker->name(),
-            'publishing-house' => $this->faker->name(),
+            'publishing_house' => $this->faker->name(),
             'edition' => $this->faker->numberBetween(1,50),
             
         ];

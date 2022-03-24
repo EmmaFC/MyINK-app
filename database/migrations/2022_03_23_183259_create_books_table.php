@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('author');
             $table->integer('year');
             $table->string('genre');
-            $table->string('cover-image');
+            $table->string('cover');
             $table->integer('pages');
             $table->text('description');
             $table->string('collection');
-            $table->string('publishing-house');
+            $table->string('publishing_house');
             $table->string('edition');
             $table->timestamps();
             

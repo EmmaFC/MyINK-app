@@ -16,11 +16,11 @@ class Book extends Model
         'author',
         'year',
         'genre',
-        'cover-image',
+        'cover',
         'pages',
         'description',
         'collection',
-        'publishing-house',
+        'publishing_house',
         'edition',
         
     ];
