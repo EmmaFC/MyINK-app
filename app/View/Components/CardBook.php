@@ -9,16 +9,18 @@ class CardBook extends Component
 {
     public $book;
     public $cover;
+    public $id;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($book, $cover)
+    public function __construct($book, $cover, $id)
     {
         $this->book = $book;
         $this->cover = $cover;
+        $this->id = $id;
     }
 
     /**
@@ -29,5 +31,6 @@ class CardBook extends Component
     public function render()
     {
         return view('components.card-book');
+
     }
 }

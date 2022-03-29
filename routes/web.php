@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 use app\Models\Book;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +18,15 @@ use app\Models\Book;
 |
 */
 
-Route::get('/', function () {
-
-    $random_book = Book::all()->random(1);
-    return view('welcome', ['random_book' => $random_book]);
-  
-})->name('welcome');
+Route::get('/', [BookController::class, 'landingpage'])->name('welcome');
 
 Auth::routes();
 
-/* Route::get('/home', [HomeController::class, 'index'])->name('home');
- */Route::get('/home', [BookController::class, 'index'])->name('home');
+Route::group (['middleware' => 'auth'], function() {
+
+        Route::get('/home', [BookController::class, 'index'])->name('home');
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('/profile/{name}', [UserController::class, 'show'])->name('profile');
+        Route::get('/book/{id}', [BookController::class, 'show'])->name('book');
+
+});

@@ -1,6 +1,5 @@
-<div class="navbar navbar-expand-md">
-    <div class="container">
-        
+<div class="d-flex flex-row justify-content-between align-content-center">        
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,10 +13,11 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
+              
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('welcome') }}">{{ __('home') }}</a>
+                            <a class="nav-link" href="{{ route('welcome') }}">{{ __('admin acces') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -40,6 +40,16 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/profile/{{ Auth::user()->name  }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('profile-form').submit();">
+                                {{ __('profile') }}
+                            </a>
+
+                            <form id="profile-form" action="/profile/{{ Auth::user()->name  }}" method="GET" class="d-none">
+                                @csrf
+                            </form>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -55,4 +65,4 @@
             </ul>
         </div>
     </div>
-</div>
+

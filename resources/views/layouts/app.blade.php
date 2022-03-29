@@ -7,7 +7,7 @@
         <div id="app"> 
 
             <x-header />
-            <main class="py-4">
+            <main class="py-4 main">
                 @yield('content')
             </main>
             <x-footer />

@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-md navbar-light">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-       
+<nav class="container navbar-light d-flex flex-row justify-content-between">
+ {{--    <div class="d-flex flex-row justify-content-between align-content-center">
+        --}} 
+        <x-brand-logo />
         <x-nav />
-        
-    </div>
+    {{--    
+    </div> --}}
 </nav>
+
+{{--   {{ config('app.name', 'Laravel') }} --}}

@@ -7,7 +7,7 @@ use Livewire\Component;
 class Icon extends Component
 {
 
-    public $icon;
+    /* public $icon;
     public $width;
     public $height;
     public $viewBox;
@@ -16,30 +16,20 @@ class Icon extends Component
     public $id;
     public $class;
 
-    public function __construct(
-        $icon = null,
-        $width = 24,
-        $height = 24,
-        $viewBox = '24 24',
-        $fill = 'currentColor',
-        $strokeWidth = 2,
-        $id = null,
-        $class = null
-    )
+    public function __construct( $icon, $image, $url, $fill )
     {
         $this->icon = $icon;
-        $this->width = $width;
-        $this->height = $height;
-        $this->viewBox = $viewBox;
+        $this->image = $image;
+        $this->url = $url;
+        $this->width = 24;
+        $this->height = 24;
+        $this->viewBox = '24 24';
         $this->fill = $fill;
-        $this->strokeWidth = $strokeWidth;
-        $this->id = $id ?? '';
-        $this->class = $class ?? '';
     }
 
     
     public function render()
     {
         return view('livewire.icon');
-    }
+    } */
 }

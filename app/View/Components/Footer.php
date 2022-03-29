@@ -3,9 +3,14 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\Company;
+use App\Models\ContactLink;
 
 class Footer extends Component
 {
+    public $companies;
+    public $icons;
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +18,8 @@ class Footer extends Component
      */
     public function __construct()
     {
-        //
+        $this->companies = Company::all();
+        $this->icons = ContactLink::all();
     }
 
     /**

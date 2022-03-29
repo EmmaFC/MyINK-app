@@ -1,0 +1,233 @@
+.navbar {
+    padding: $navbar-padding-y $navbar-padding-x;
+    display:inline;
+}
+
+#app {
+    margin: 0;
+    padding:0;
+}
+/* _navbar.scss:199 */
+/* .navbar-light {
+    background-color: $body-bg;
+
+} */
+
+/* _navbar.scss:251 */
+.navbar-dark {
+    font-family: $roboto-slab;
+    font-weight: 200 !important;
+    background-color: $third-color;
+    color: $body-bg;
+
+}
+
+
+.navbar-expand-md {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.navbar-expand-sm {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+
+/* .navbar > .container, 
+.navbar > .container-fluid, 
+navbar > .container-sm, 
+.navbar > .container-md, 
+.navbar > .container-lg, 
+.navbar > .container-xl, 
+navbar > .container-xxl  */
+
+/* .container-fluid {
+   
+  
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  
+  & > .navbar-nav {
+    flex-direction: row;
+  
+    & > .dropdown-menu {
+      position: absolute;
+    }
+    }
+
+} */
+
+/* .btn {
+    margin: $space-y-m $space-x-m;
+} */
+
+.card {
+    width: 5 rem;
+
+}
+
+@include media-breakpoint-up(xs){
+
+    .card {
+        width: 8rem;
+    }
+
+}
+
+@include media-breakpoint-up(sm){
+
+    .card {
+        width: 12rem;
+    }
+
+}
+
+@include media-breakpoint-up(md){
+
+    .card {
+        width: 12rem;
+    }
+    
+}
+
+
+
+
+
+.container {
+    padding: 5.2vh 3vw 5vh 3vw;
+    margin:0;
+}
+
+@include media-breakpoint-up(xs){
+
+    .container {
+        padding: 4.2vh 8vw 5vh 8vw;
+    }
+
+}
+
+@include media-breakpoint-up(sm){
+
+    .container {
+        padding: 5.2vh 6vw 5vh 6vw;
+    }
+
+}
+
+@include media-breakpoint-up(md){
+
+    .container {
+        padding: 5vh 5vw 5vh 5vw;
+    }
+    
+}
+.container-fluid {
+    width: 90%;
+    margin: 0 auto;
+    gap: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@include media-breakpoint-up(xs){
+
+    .container-fluid {
+        margin: 0; 
+        padding:0;
+        width: 95;
+        gap: 1.4rem;
+    }
+
+}
+
+@include media-breakpoint-up(sm){
+
+    .container-fluid {
+        margin: 0; 
+        padding:0;
+        width: 95;
+        gap: 1.8rem;
+    }
+
+}
+
+@include media-breakpoint-up(md){
+
+    .container-fluid {
+        margin: 0; 
+        padding:0;
+        width: 90;
+        gap: 2rem;
+    }
+
+}
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////
+
+.fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@include media-breakpoint-up(xs){
+
+    .fluid {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+}
+
+@include media-breakpoint-up(sm){
+
+    .fluid {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+}
+
+@include media-breakpoint-up(md){
+
+    .fluid {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+}
+
+
+@include media-breakpoint-up(lg){
+
+    .fluid {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+}
+
+@include media-breakpoint-up(xl){
+
+    .fluid {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+}
+
+@include media-breakpoint-up(xxl){
+
+    .fluid {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+}

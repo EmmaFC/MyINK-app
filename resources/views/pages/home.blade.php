@@ -3,19 +3,23 @@
 
     @section('content')
 
-        <div class="container">
+        
 {{--             <div class="row justify-content-center">
- --}}                <div class="col-12">
+ --}}                <div class="container-fluid col-12 d-flex flex-wrap">
 
-                    @foreach ($books as $book)
+                    @foreach ($books as $book) 
+                   
                     <x-card-book  
                     :book='$book'
                     :cover='$book->cover'
+                    :id='$book->id'
                     />
+                    
                     @endforeach
 
+                   
                 </div>
 {{--             </div>
- --}}        </div>
+ --}}        
 
     @endsection

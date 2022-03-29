@@ -1,5 +1,17 @@
 body {
 
+    font-family: $roboto !important;
+    background-color: $body-color;
+    
+    .main {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+
     header {
         .navbar-light {
             background-color: transparent !important;
@@ -7,10 +19,46 @@ body {
         }
     }
 
-   /*  footer {
+    .landingpage-bg {
+      /*   background-image: url('https://picsum.photos/200/300'); */
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+    }
+
+    footer {
         .bg-dark{ 
             background-color: $dark-color;
             color: $white;
         }
-    } */
+    }
+}
+
+.brand-logo {
+    width : 27vw;
+}
+
+
+@include media-breakpoint-up(xs){
+
+    .brand-logo {
+        width : 34vw;
+    }
+    
+}
+
+@include media-breakpoint-up(sm){
+
+    .brand-logo {
+        width : 22vh;
+    }
+    
+}
+
+@include media-breakpoint-up(md){
+
+    .brand-logo {
+        width : 24vh;
+    }
+    
 }

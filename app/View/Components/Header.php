@@ -3,17 +3,19 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Header extends Component
 {
+  /*   public $user; */
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(/* $user */)
     {
-        //
+       /*  $this->user = $user; */
     }
 
     /**

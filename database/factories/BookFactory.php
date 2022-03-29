@@ -24,7 +24,7 @@ class BookFactory extends Factory
             'genre' => $this->faker->name(),
             'cover' => 'https://picsum.photos/200/300',
             'pages' => $this->faker->numberBetween(80,525),
-            'description' => $this->faker->name(),
+            'description' => $this->faker->text(),
             'collection' => $this->faker->name(),
             'publishing_house' => $this->faker->name(),
             'edition' => $this->faker->numberBetween(1,50),

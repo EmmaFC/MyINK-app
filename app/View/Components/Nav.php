@@ -3,17 +3,23 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 
 class Nav extends Component
 {
+
+   
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(/* $current_user */)
     {
-        //
+         //   
     }
 
     /**
@@ -23,6 +29,7 @@ class Nav extends Component
      */
     public function render()
     {
+        
         return view('components.nav');
     }
 }
