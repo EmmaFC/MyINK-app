@@ -29,8 +29,8 @@ class UserController extends Controller
     public function index()
     {
         
-        $users = User::all();
-        return view('dashboard', ['users'=>$users]);
+        $books = Book::all();
+        return view('pages.home', ['books' => $books]);
       
     }
     /**
@@ -38,12 +38,54 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show($name)
+    public function show($id)
     {   
-        
+        $user = User::findOrFail($id);
+        $fav_books = array();
+
+        foreach ($user->books as $table_books) {
+            
+            $table_books = $table_books->pivot->book_id;
+            $fav_book = Book::find($table_books);
+            array_push($fav_books, $fav_book);
+        }
+
         return view('pages.profile', [
-            'user' => User::findOrFail($name)
+            'id' => User::findOrFail($id),
+            'fav_books' => $fav_books
         ]);
-      
+       
     }
+
+    public function addFavorite($id_user, $id_book){
+
+        $user = User::findOrFail($id_user);
+        $book = $id_book;
+        if (isset($user->books()->$book)){
+            Book::find($book)->user()->newPivotStatementForId(Auth::id())->whereStatus(0)->delete();
+        }
+        else {
+            $user->books()->attach($book);
+        }
+
+    }
+
+   /*  public function current_user ($id)
+    {   
+        $user = User::findOrFail($id);
+        $id = $user->id;
+        return view('layouts.app', [
+            'id' => User::findOrFail($id),
+        ]);
+       
+    } */
+
+    public function admin()
+    {
+        return view('auth.admin-login');
+    }
+
+
+    
+
 }

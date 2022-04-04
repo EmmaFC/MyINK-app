@@ -4,18 +4,23 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
+use App\Models\User;
 
 class Header extends Component
 {
-  /*   public $user; */
+  
+    /* public $current_id; */
     /**
-     * Create a new component instance.
+     * Create a new omponent instance.
      *
      * @return void
      */
-    public function __construct(/* $user */)
+    public function __construct(/* $id */)
     {
-       /*  $this->user = $user; */
+        /* $this->current_id = $id; */
     }
 
     /**

@@ -6,6 +6,7 @@ body {
     .main {
         width: 80%;
         margin: 0 auto;
+        padding: 1rem 0 4rem 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -33,7 +34,10 @@ body {
         }
     }
 }
-
+.body-dark {
+    background-color: $body-color-dark !important;
+    color: $light-color;
+}
 .brand-logo {
     width : 27vw;
 }
@@ -61,4 +65,211 @@ body {
         width : 24vh;
     }
     
+}
+
+.book-cover-detail {
+    height : 100%;
+    width : 100%;
+    margin:0;
+   /*  padding: inherit; */
+}
+
+.book-ranking {
+    width: 100px;
+    margin:0;
+}
+
+
+.pink {
+    color:$brand-color ;
+}
+
+.fluid-box {
+    height : 100%;
+    width : 90%;
+    margin-left: 3rem  !important;
+    padding :0 3rem !important;
+}
+
+.section-title {
+    font-family: $roboto-slab;
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing:0.08em;
+    margin-bottom: 3rem;
+    width: 100%;
+    color:$third-color;
+    display: inline-block !important;
+}
+
+
+.title {
+    font-family: $roboto-slab;
+    font-weight: 600;
+    font-size: 1.7em;
+    letter-spacing:0.07em;
+    margin-bottom: 1.5em;
+    width:inherit;
+}
+
+.subtitle {
+    font-family: $roboto-slab;
+    font-weight: 400;
+    font-size: 1.2em;
+    color:$secondary-color;
+    letter-spacing:0.07em;
+    margin-bottom: 0.9em;
+}
+
+.text {
+    font-family: $roboto;
+    font-weight:light;
+    font-size: 0.9em;
+    color:$third-color;
+    letter-spacing:0.05em;
+    margin-bottom: 0.6em;
+}
+
+.text-link {
+    font-family: $roboto !important;
+    font-weight:lighter !important;
+    font-size: 1.2em !important;
+    color:$dark-color !important;
+    letter-spacing:0.05em !important;
+    text-decoration: underline !important;
+}
+
+.nav-text {
+    font-family: $roboto;
+    font-weight:light;
+    font-size: 1em;
+    color:$third-color;
+    letter-spacing:0.05em;
+    padding-right: 12%;
+    margin-bottom: 0 !important;
+}
+
+
+//Dark theme
+
+
+.section-title-dark {
+    font-family: $roboto-slab;
+    font-weight: 800;
+    font-size: 3em;
+    letter-spacing:0.08em;
+    margin-bottom: 3rem;
+    width: 100%;
+    color:$light-color;
+    display: inline-block !important;
+}
+
+
+.title-dark {
+    font-family: $roboto-slab;
+    font-weight: 600;
+    font-size: 1.7em;
+    color:$white;
+    letter-spacing:0.07em;
+    margin-bottom: 1.5em;
+    width:inherit;
+}
+
+.subtitle-dark {
+    font-family: $roboto-slab;
+    font-weight: 400;
+    font-size: 1.2em;
+    color:$light-color;
+    letter-spacing:0.07em;
+    margin-bottom: 0.9em;
+}
+
+.text-dark {
+    font-family: $roboto;
+    font-weight:light;
+    font-size: 0.9em;
+    color:$light-color !important;
+    letter-spacing:0.05em;
+    margin-bottom: 0.6em;
+}
+
+.text-link-dark {
+    font-family: $roboto !important;
+    font-weight:lighter !important;
+    font-size: 1.2em !important;
+    color:$light-color !important;
+    letter-spacing:0.05em !important;
+    text-decoration: underline !important;
+}
+
+
+.nav-text-dark {
+    font-family: $roboto;
+    font-weight:light;
+    font-size: 1em;
+    color:$third-color !important;
+    letter-spacing:0.05em;
+    padding-right: 12%;
+    margin-bottom: 0 !important;
+
+}
+
+
+@include media-breakpoint-up(xs){
+
+    .title {
+        width : 24vh;
+        text-align: center;
+    }
+
+    .book-cover-detail {
+        padding:0 !important;
+    }
+}
+
+@include media-breakpoint-up(sm){
+    
+    .title {
+        width : 24vh;
+        text-align: center;
+    }
+    .book-cover-detail {
+        padding:4% !important;
+    
+    }
+}
+
+@include media-breakpoint-up(md){
+    
+    .title, .subtitle {
+        width : 24vh;
+        text-align: left;
+    }
+
+    .book-cover-detail {
+        padding:inherit !important;
+    }
+}
+
+
+
+.less-width {
+    width :80%;
+}
+
+.profile-image-s {
+    border-radius: 100%;
+    width: 5rem;
+    height: 5rem;
+}
+
+.profile-image-m {
+    border-radius: 100%;
+    width: 11rem;
+    height: 11rem;
+}
+
+.box { 
+    height: 20rem !important;
+    margin: 2rem auto 5rem auto !important;
 }

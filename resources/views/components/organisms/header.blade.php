@@ -1,10 +1,8 @@
-<nav class="container navbar-light d-flex flex-row justify-content-between">
- {{--    <div class="d-flex flex-row justify-content-between align-content-center">
-        --}} 
+<nav class="container px-6 py-6 navbar-light d-flex flex-row justify-content-between">
+       
         <x-brand-logo />
-        <x-nav />
-    {{--    
-    </div> --}}
+        <x-nav {{-- :id='$current_id' --}}/>
+  
 </nav>
 
 {{--   {{ config('app.name', 'Laravel') }} --}}

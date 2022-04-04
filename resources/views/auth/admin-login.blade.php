@@ -1,17 +1,27 @@
-@extends('layouts.app-dark')
+@extends('layouts.app')
 
 @section('content')
-<div class="column container-second">
-    <div class="d-flex justify-content-start"><h1 class="section-title-dark">{{ __('Login') }}</h1></div>
+<div class="column container-second ">
+    <div class="d-flex justify-content-start"><h1 class="section-title">Admin Login</h1></div>
         <div class="box">
 
                 <div  class="card-box column"> 
-                    <form class="mb-16" method="POST" action="{{ route('login') }}">
+                    <form class="mb-16" method="POST" action="{{ route('admin-login') }}">
                         
                         <div class="container-second">
                             @csrf
 
                             <div class="container-second">
+
+                                <input id="code" type="password" class="input-dark @error('code') is-invalid @enderror" 
+                                placeholder="{{ __('Admin Code') }}" name="code" required autocomplete="new-code">
+
+                                @error('code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                                 <input id="email" type="email" class="input-dark" @error('email') is-invalid @enderror" name="email" 
                                 placeholder="{{ __('Email Address') }}"
                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -36,29 +46,29 @@
                                 <div> 
                                     <input class="mr-2 form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label for="remember">
-                                        <h4 class="text-dark">{{ __('Remember Me') }}</h4>
+                                        <h4 class="text">{{ __('Remember Me') }}</h4>
                                     </label>
                                 </div> 
                                     @if (Route::has('password.request'))
                                     <div> 
                                         <a href="{{ route('password.request') }}">
-                                            <h4 class="text-dark">{{ __('Forgot Your Password?') }}</h4>
+                                            <h4 class="text">{{ __('Forgot Your Password?') }}</h4>
                                         </a>
                                     </div>
                                     @endif
+                              
                             </div>
+                           
                         </div>
                         
                         <div class="container-second mt-4 mb-4 d-flex justify-content-between align-content-center">
-                            <a href="{{ route('welcome') }}"><h4 class="text-link-dark">Volver</h4></a>
-                            <a href="{{ route('register') }}"><h4 class="text-link-dark">Registro</h4></a>
+                            <a href="{{ route('welcome') }}"><h4 class="text-link">Volver</h4></a>
                             <a href="{{ route('home') }}"><button type="submit" class="btn">
                                 {{ __('Login') }}
                             </button></a>
                         </div>
                     </form>
-                    
-            </div>
+                </div>
 
         </div>
     </div>

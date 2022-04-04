@@ -6,7 +6,9 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use app\Models\Book;
 
-
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Routes;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,15 +20,25 @@ use app\Models\Book;
 |
 */
 
-Route::get('/', [BookController::class, 'landingpage'])->name('welcome');
+/* 
+Route::livewire('/', 'image-upload');
+ */
+Route::get('/', [HomeController::class, 'landingpage'])->name('welcome');
 
 Auth::routes();
+Route::get('/admin-login', [UserController::class, 'admin'])->name('admin-login');
 
 Route::group (['middleware' => 'auth'], function() {
 
-        Route::get('/home', [BookController::class, 'index'])->name('home');
+        Route::get('/home', [UserController::class, 'index'])->name('home');
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-        Route::get('/profile/{name}', [UserController::class, 'show'])->name('profile');
-        Route::get('/book/{id}', [BookController::class, 'show'])->name('book');
-
+        Route::get('/profile/{id}', [UserController::class, 'show'])->name('profile');
+        Route::get('/book/{id}', [BookController::class, 'show'])->name('book-detail');
+        
+        
+        Route::resource('book', BookController::class);
+        /*  Route::get('/book', [BookController::class, 'index'])->name('book.index');
+         Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+         Route::get('/book/edit', [BookController::class, 'edit'])->name('book.edit');
+         Route::get('/book/delete', [BookController::class, 'delete'])->name('book.delete'); */
 });

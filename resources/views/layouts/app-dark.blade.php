@@ -3,14 +3,12 @@
 
     <x-head />
 
-    <body>
+    <body class="body-dark">
         <div id="app"> 
-
-             {{-- @foreach($id as $current_id) --}}
-                <x-header 
-               {{--  :id='$current_id' --}}
-                />
-         {{--    @endforeach --}}
+             
+            <x-header 
+            :id='$id = 2'
+            />
 
             <main class="main">
                 @yield('content')

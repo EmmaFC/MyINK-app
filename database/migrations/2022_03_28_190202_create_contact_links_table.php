@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('contact_links', function (Blueprint $table) {
 
-            $table->id();
+            $table->increments('id')->unsigned();
             $table->string('name');
             $table->text('description');
             $table->string('image');

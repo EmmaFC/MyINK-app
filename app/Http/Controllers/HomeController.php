@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
     
     /**
@@ -29,4 +29,16 @@ class HomeController extends Controller
         return view('pages.dashboard', ['books' => $books]);
       
     }
+
+    //
+
+    public function landingpage ()
+    {
+        $random_book = Book::inRandomOrder()->first();
+        return view('welcome', ['random_book'=>$random_book]);
+
+    }
 }
+
+
+/* return redirect()->back(); */

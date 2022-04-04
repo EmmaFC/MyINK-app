@@ -21,7 +21,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'image' => 'https://picsum.photos/200/300',
             'description' => $this->faker->text(),
-            'email' => $this->faker->name(),
+            'email' => $this->faker->email(),
             'email_verified_at' => now(),
             'password' => '$2y$10$QMs.f6PPq795yQm3bJc9FuU7lzVWfj./XFFPuI7K3/vJlGV44NIPC', // password
             'remember_token' => Str::random(10),

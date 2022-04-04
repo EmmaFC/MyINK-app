@@ -1,33 +1,33 @@
-@extends('layouts.app-dark')
+@extends('layouts.app')
 
 @section('content')
 <div class="column container-second">
-    <div class="d-flex justify-content-start"><h1 class="section-title-dark">{{ __('Register') }}</h1></div>
+    <div class="d-flex justify-content-start"><h1 class="section-title">{{ __('Admin Register') }}</h1></div>
         <div class="box">
 
                 <div  class="card-box column"> 
 
-                    <form class="mb-16" method="POST" action="{{ route('register') }}" {{-- enctype="multipart/form-data" --}}>
-                        @csrf
+                    <form  class="mb-16" method="POST" action="{{ route('admin-register') }}">
                         <div class="container-second">
+                        @csrf
 
-                        <div  class="container-second">
-{{-- 
+                            <div  class="container-second">
+
                                 <div class="card">
                                     @if (isset($user->image ))
-                                    <img class="profile-image-m" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ $user->image }}" alt="Card image cap">
                                     @else
-                                    <img class="profile-image-m" src="https://picsum.photos/200/300" alt="Card image cap">
+                                    <img class="card-img-top" src="https://picsum.photos/200/300" alt="Card image cap">
                                     @endif
-                                </div> --}}
+                                </div>
                                 
-                             {{--    <input id="image" class="input-dark" type="file" name="image" placeholder="{{ __('imagen de perfil') }}" @error('image') is-invalid @enderror" required autocomplete="current-image">
+                                <input id="image" class="input-dark" type="file" name="image" placeholder="{{ __('imagen de perfil') }}" @error('image') is-invalid @enderror" required autocomplete="current-image">
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
- --}}
+
                                 <input id="name" type="text" class="input-dark @error('name') is-invalid @enderror" 
                                 name="name" 
                                 placeholder="{{ __('Name') }}"
@@ -38,7 +38,16 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                         
+
+                                <input id="code" type="password" class="input-dark @error('code') is-invalid @enderror" 
+                                placeholder="{{ __('Admin Code') }}" name="code" required autocomplete="new-code">
+
+                                @error('code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                                 <input id="email" type="email" class="input-dark @error('email') is-invalid @enderror" 
                                 placeholder="{{ __('Email Address') }}" name="email" 
                                 value="{{ old('email') }}" required autocomplete="email">
@@ -58,28 +67,27 @@
                                     </span>
                                 @enderror
                             
-                                <input id="password-confirm" type="password" class="input-dark" 
+                                <input id="password-confirm" type="password" class="input" 
                                 placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required autocomplete="new-password">
                             
-                        </div>
-                         
-                        <div class="fluid mt-4 mb-4 d-flex justify-content-between align-content-center">
+                            </div>
+                            
+                            <div class="fluid mt-4 mb-4 d-flex justify-content-between align-content-center">
                                 <div> 
                                     <a href="{{ route('login') }}">
-                                        <h4 class="text-dark">{{ __('¿Ya tienes cuenta?') }}</h4>
+                                        <h4 class="text">{{ __('¿Ya tienes cuenta?') }}</h4>
                                     </a>
                                 </div>
+                            </div>
+                            
                         </div>
-
-                        
-                    </div>
-                    <div class="container-second mt-4 mb-4 d-flex justify-content-between align-content-center">
-                        <a href="{{ route('welcome') }}"><h4 class="text-link-dark">Volver</h4></a>
-                        <a href="{{ route('home') }}"><button type="submit" class="btn">
-                            {{ __('Register') }}
-                        </button></a>
-                    </div>
-                </form>
+                            <div class="container-second mt-4 mb-4 d-flex justify-content-between align-content-center">
+                                <a href="{{ route('welcome') }}"><h4 class="text-link">Volver</h4></a>
+                                <a href="{{ route('home') }}"><button type="submit" class="btn">
+                                    {{ __('Register') }}
+                                </button></a>
+                            </div>
+                    </form>
                 </div>
         
         </div>

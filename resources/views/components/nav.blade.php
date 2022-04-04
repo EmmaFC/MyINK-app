@@ -1,68 +1,54 @@
-<div class="d-flex flex-row justify-content-between align-content-center">        
+<div class="d-flex flex-row align-content-center">        
+    @guest
+  
+        @if (Route::has('login') || Route::has('register'))
+            <button class="card" type="button">
+                <a  href="{{ route('admin-login') }}"><p class="nav-text-dark">{{ __('admin acces') }}</p></a>
+            </button>
+            <button  type="button">
+                <a href="{{ route('login') }}"><p class="nav-text-dark">{{ __('Login') }}</p></a>
+            </button>   
+            <button  type="button">
+                <a href="{{ route('register') }}"><p class="nav-text-dark">{{ __('Register') }}</p></a>
+            </button>
+            @else
+            <button type="button"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <a class="nav-text-dark" href="{{ route('home') }}"><p class="subtitle">{{ __('home') }}</p></a>
+            </button> 
+            @endif
+    
+    @endguest
+    @auth
+    <div class="dropdown">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a id="navbarDropdown" class="fluid " role="button" href="#" data-bs-toggle="dropdown" 
+            aria-haspopup="true" aria-expanded="false" v-pre>
+            <p class="nav-text-dark">{{ $profile_name }}</p>
+            <img class="profile-image-s" src="{{ $profile_image }}" alt="{{ $profile_name }}">
+        </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">     
 
-            </ul>
+            <a class="dropdown-item" href="/profile/{{ $id }}" onclick="event.preventDefault(); 
+                document.getElementById('profile-form').submit();">
+                {{ __('Mi Perfil') }}
+            </a>
+            <form id="profile-form" action="/profile/{{ $id }}" method="GET" class="d-none">
+                @csrf
+            </form>
+            
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
 
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
-                <!-- Authentication Links -->
-              
-                @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('welcome') }}">{{ __('admin acces') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('home') }}</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/profile/{{ Auth::user()->name  }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('profile-form').submit();">
-                                {{ __('profile') }}
-                            </a>
-
-                            <form id="profile-form" action="/profile/{{ Auth::user()->name  }}" method="GET" class="d-none">
-                                @csrf
-                            </form>
-
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
         </div>
-    </div>
 
+    </div>
+    @endauth
+    
+</div>
