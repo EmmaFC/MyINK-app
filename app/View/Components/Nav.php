@@ -27,7 +27,7 @@ class Nav extends Component
        /*  $this->user = User::findOrFail($id); */
         $this->profile_name = 'Emma';
         $this->profile_image = 'https://picsum.photos/200/30'; 
-        $this->id = 2;
+        $this->id = 1;
     }
 
     /**

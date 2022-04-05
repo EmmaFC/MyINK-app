@@ -33,11 +33,9 @@ class FavoritesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index($book, $user)
     { 
-      /* 
-        return view('book.index', $books); */
-
+        //
     }
 
     
@@ -71,13 +69,3 @@ class FavoritesController extends Controller
     }
 }
 
-/* 
-<i id="like{{$post->id}}" 
-class="glyphicon glyphicon-heart {{ $post->favoriters()->count() > 0  ? 'like-post' : '' }}"></i>
-
-
-<span class="like-btn">
-<i id="like{{$post->id}}" class="glyphicon glyphicon-heart {{ $post->favoriters()->count() > 0  ? 'like-post' : '' }}"></i>
-</span>
-
- */

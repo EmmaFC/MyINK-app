@@ -41,51 +41,25 @@ class UserController extends Controller
     public function show($id)
     {   
         $user = User::findOrFail($id);
-        $fav_books = array();
-
-        foreach ($user->books as $table_books) {
-            
-            $table_books = $table_books->pivot->book_id;
-            $fav_book = Book::find($table_books);
-            array_push($fav_books, $fav_book);
+        
+        $fav_books = array ();
+     
+        foreach($user->books as $fav_book)
+        {
+           $book_id = $fav_book->pivot->book_id; // Correctly gets the book_id
+           $fav_book = Book::where('id', '=', $book_id)->first();
+           array_push($fav_books, $fav_book); 
         }
 
         return view('pages.profile', [
             'id' => User::findOrFail($id),
             'fav_books' => $fav_books
         ]);
-       
-    }
-
-    public function addFavorite($id_user, $id_book){
-
-        $user = User::findOrFail($id_user);
-        $book = $id_book;
-        if (isset($user->books()->$book)){
-            Book::find($book)->user()->newPivotStatementForId(Auth::id())->whereStatus(0)->delete();
-        }
-        else {
-            $user->books()->attach($book);
-        }
 
     }
-
-   /*  public function current_user ($id)
-    {   
-        $user = User::findOrFail($id);
-        $id = $user->id;
-        return view('layouts.app', [
-            'id' => User::findOrFail($id),
-        ]);
-       
-    } */
 
     public function admin()
     {
         return view('auth.admin-login');
     }
-
-
-    
-
 }
