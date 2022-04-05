@@ -15,15 +15,20 @@ return new class extends Migration
     {
         Schema::create('book_user', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned();
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('book_id')->unsigned()->index();
+            $table->id();
+            $table->unsignedBigInteger('book_id');
+            $table->unsignedBigInteger('user_id');
+
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
 
         });
     }
+
+   
+      
 
     /**
      * Reverse the migrations.

@@ -11,14 +11,18 @@
             <button  type="button">
                 <a href="{{ route('register') }}"><p class="nav-text-dark">{{ __('Register') }}</p></a>
             </button>
-            @else
+         {{--    @else
             <button type="button"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <a class="nav-text-dark" href="{{ route('home') }}"><p class="subtitle">{{ __('home') }}</p></a>
-            </button> 
+            </button>  --}}
             @endif
     
     @endguest
     @auth
+
+        <button type="button"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <a class="nav-text-dark" href="{{ route('home') }}"><p class="subtitle">{{ __('home') }}</p></a>
+        </button> 
     <div class="dropdown">
 
         <a id="navbarDropdown" class="fluid " role="button" href="#" data-bs-toggle="dropdown" 

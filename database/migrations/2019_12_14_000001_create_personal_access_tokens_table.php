@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->morphs('tokenable');
             $table->string('name');
             $table->string('image');

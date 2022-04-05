@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
 
-            $table->increments('id')->unsigned();
+            $table->id();
             $table->string('title');
             $table->string('author');
             $table->integer('year');

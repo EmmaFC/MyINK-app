@@ -27,11 +27,14 @@ class Book extends Model
         
     ];
 
-    public function user()
+    /* public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'book_id');;
-    }
+    } */
 
-  
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
 

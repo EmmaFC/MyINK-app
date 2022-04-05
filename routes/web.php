@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FavoritesController;
 use app\Models\Book;
 
 use Illuminate\Support\Facades\Input;
@@ -34,6 +35,8 @@ Route::group (['middleware' => 'auth'], function() {
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::get('/profile/{id}', [UserController::class, 'show'])->name('profile');
         Route::get('/book/{id}', [BookController::class, 'show'])->name('book-detail');
+
+        Route::get('/checkfavorite/{id}', [FavoritesController::class, 'checkFavorite'])->name('checkfavorite');
         
         
         Route::resource('book', BookController::class);
