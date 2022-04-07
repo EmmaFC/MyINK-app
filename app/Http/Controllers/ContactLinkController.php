@@ -15,7 +15,8 @@ class ContactLinkController extends Controller
      */
     public function index()
     {
-        //
+        $contactlinks ['contactlinks'] = ContactLink::all(); /* ::paginate(15); */
+        return view('livewire.contactlinks.index', $contactlinks);
     }
 
     /**
@@ -36,7 +37,14 @@ class ContactLinkController extends Controller
      */
     public function store(StoreContactLinkRequest $request)
     {
-        //
+        $dataContactLink = request()->except('_token');
+
+        if($request->hasFile('image')){
+            $dataContactLink['image']=$request->file('image')->store('storage', 'public');
+        }
+
+        ContactLink::insert($dataContactLink);
+        return response()->json($dataContactLink);
     }
 
     /**
@@ -45,9 +53,10 @@ class ContactLinkController extends Controller
      * @param  \App\Models\ContactLink  $contactLink
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactLink $contactLink)
+    public function show(ContactLink $contactlink)
     {
-        //
+        $contactlink = ContactLink::findOrFail($id);     
+        return view('livewire.contactlinks.show', ['contactlink' => $contactlink] );
     }
 
     /**
@@ -56,9 +65,10 @@ class ContactLinkController extends Controller
      * @param  \App\Models\ContactLink  $contactLink
      * @return \Illuminate\Http\Response
      */
-    public function edit(ContactLink $contactLink)
+    public function edit(ContactLink $id)
     {
-        //
+        $contactlink = ContactLink::findOrFail($id);
+        return view('livewire.contactlinks.edit', compact ('contactlink') );
     }
 
     /**
@@ -68,9 +78,12 @@ class ContactLinkController extends Controller
      * @param  \App\Models\ContactLink  $contactLink
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateContactLinkRequest $request, ContactLink $contactLink)
+    public function update(/* UpdateContactLinkRequest $request, */ ContactLink $id)
     {
-        //
+        $dataContactLink = request()->except(['_token', '_method']);
+        ContactLink::where('id', '=', $id)->update($dataContactLink);
+        $contactLink = ContactLink::findOrFail($id);
+        return view('livewire.contactlinks.edit', compact ('contactLink') );
     }
 
     /**
@@ -79,8 +92,9 @@ class ContactLinkController extends Controller
      * @param  \App\Models\ContactLink  $contactLink
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactLink $contactLink)
+    public function destroy(ContactLink $id)
     {
-        //
+        ContactLink::destroy($id);
+        return redirect('livewire.contactlinks');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rol;
+use App\Models\Role;
 use App\Http\Requests\StoreRolRequest;
 use App\Http\Requests\UpdateRolRequest;
 
@@ -15,7 +15,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $roles ['roles'] = Role::all(); /* ::paginate(15); */
+        return view('livewire.role.index', $roles);
     }
 
     /**
@@ -36,51 +37,59 @@ class RolController extends Controller
      */
     public function store(StoreRolRequest $request)
     {
-        //
+        $dataRole = request()->except('_token');
+        Role::insert($dataRole);
+        return response()->json($dataRole);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param  \App\Models\Role  $rol
      * @return \Illuminate\Http\Response
      */
-    public function show(Rol $rol)
+    public function show(Role $role)
     {
-        //
+        $role = Role::findOrFail($id);     
+        return view('livewire.role.show', ['role' => $role] );
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param  \App\Models\Role  $rol
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit(Role $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        return view('livewire.role.edit', compact ('role') );
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateRolRequest  $request
-     * @param  \App\Models\Rol  $rol
+     * @param  \App\Models\Role  $rol
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRolRequest $request, Rol $rol)
+    public function update(/* UpdateRolRequest $request, */ Role $id)
     {
-        //
+        $dataRole = request()->except(['_token', '_method']);
+        Role::where('id', '=', $id)->update($dataRole);
+        $role = Role::findOrFail($id);
+        return view('livewire.role.edit', compact ('role') );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rol  $rol
+     * @param  \App\Models\Role  $rol
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy(Role $id)
     {
-        //
+        Role::destroy($id);
+        return redirect('livewire.role');
     }
 }

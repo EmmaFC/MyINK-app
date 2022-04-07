@@ -32,9 +32,14 @@ class Book extends Model
         return $this->belongsTo(User::class, 'user_id', 'book_id');;
     } */
 
-    public function users()
+    public function users/* favs */()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function usersRanked()
+    {
+        return $this->belongsToMany(User::class)->withPivot(["ranking"]);
     }
 }
 

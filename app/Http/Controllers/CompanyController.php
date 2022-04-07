@@ -15,7 +15,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies ['companies'] = Company::all(); /* ::paginate(15); */
+        return view('livewire.company.index', $companies);
     }
 
     /**
@@ -36,7 +37,14 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        //
+        $dataCompany = request()->except('_token');
+
+      /*   if($request->hasFile('cover')){
+            $dataCompany['cover']=$request->file('cover')->store('storage', 'public');
+        } */
+
+        Company::insert($dataCompany);
+        return response()->json($dataCompany);
     }
 
     /**
@@ -47,7 +55,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        $company = Company::findOrFail($id);     
+        return view('livewire.company.show', ['company' => $company] );
     }
 
     /**
@@ -56,9 +65,10 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit(Company $id)
     {
-        //
+        $company = Company::findOrFail($id);
+        return view('livewire.company.edit', compact ('company') );
     }
 
     /**
@@ -68,9 +78,12 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCompanyRequest $request, Company $company)
+    public function update(/* UpdateCompanyRequest $request, */ Company $id)
     {
-        //
+        $dataCompany = request()->except(['_token', '_method']);
+        Company::where('id', '=', $id)->update($dataCompany);
+        $company = Company::findOrFail($id);
+        return view('livewire.company.edit', compact ('company') );
     }
 
     /**
@@ -81,6 +94,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        Company::destroy($id);
+        return redirect('livewire.company');
     }
 }

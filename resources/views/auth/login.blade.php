@@ -53,8 +53,9 @@
                             <a href="{{ route('welcome') }}"><h4 class="text-link-dark">Volver</h4></a>
                             <a href="{{ route('register') }}"><h4 class="text-link-dark">Registro</h4></a>
                             <a href="{{ route('home') }}"><button type="submit" class="btn">
-                                {{ __('Login') }}
+                                {{ __('Register') }}
                             </button></a>
+
                         </div>
                     </form>
                     

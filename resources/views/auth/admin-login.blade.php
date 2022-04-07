@@ -6,17 +6,17 @@
         <div class="box">
 
                 <div  class="card-box column"> 
-                    <form class="mb-16" method="POST" action="{{ route('admin-login') }}">
+                    <form class="mb-16" method="POST" action="{{ route('login') }}">
                         
                         <div class="container-second">
                             @csrf
 
                             <div class="container-second">
 
-                                <input id="code" type="password" class="input-dark @error('code') is-invalid @enderror" 
-                                placeholder="{{ __('Admin Code') }}" name="code" required autocomplete="new-code">
+                                <input id="admin_key" type="admin_key" class="input-dark" @error('admin_key') is-invalid @enderror" 
+                                placeholder="{{ __('Código admin') }}" name="admin_key" required autocomplete="new-admin_key">
 
-                                @error('code')
+                                @error('admin_key')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -63,8 +63,8 @@
                         
                         <div class="container-second mt-4 mb-4 d-flex justify-content-between align-content-center">
                             <a href="{{ route('welcome') }}"><h4 class="text-link">Volver</h4></a>
-                            <a href="{{ route('home') }}"><button type="submit" class="btn">
-                                {{ __('Login') }}
+                            <a href="{{ route('home') }}"><button type="submit" class="btn"> 
+                                {{ __('Register') }}
                             </button></a>
                         </div>
                     </form>

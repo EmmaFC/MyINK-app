@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 
 class HomeController extends Controller
@@ -24,10 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
         $books = Book::all();
-        return view('pages.dashboard', ['books' => $books]);
-      
+        if(Auth::user()->hasRole('user')) {
+            return view('livewire.pages.home', ['books' => $books]);
+        }
+
+        if(!Auth::user()->hasRole('user')) {
+            return view('livewire.pages.dashboard', ['books' => $books]);
+        }
+        return view('welcome');
+
     }
 
     //

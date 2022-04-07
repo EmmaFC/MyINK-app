@@ -3,8 +3,7 @@
 
     @section('content')
 
-        
-          
+      {{--  {{ Auth::user()->roles }} --}}
                 <div class="container">
                   <h1 class="title">BIENVENID@</h1>
                   <h5 class="subtitle">Descubre tu próxima lectura</h5>

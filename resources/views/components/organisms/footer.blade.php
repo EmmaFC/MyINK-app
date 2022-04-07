@@ -1,4 +1,4 @@
-<footer class="navbar{{--  fixed-bottom  --}}navbar-expand-md navbar-dark shadow-sm">
+<footer class=" {{-- navbar fixed-bottom  --}} navbar-expand-md navbar-dark shadow-sm">
     <div class="d-flex flex-row justify-content-between align-content-center">
       <div class="text-center d-flex align-content-end">
          <h6>Copyright {{ $companies->first()->name }} &copy;</h6>
@@ -6,9 +6,7 @@
       <div class="d-flex flex-row justify-content-end align-content-center">
         @foreach ($icons as $icon)
         <a class="mx-2" href="{{ $icon->url }}">
-          <svg class="text-center flex-row justify-content-center align-content-center" width="35" height="35">
-            <image class="change-my-color" xlink:href="{{ $icon->image }}" width="35"  height="35" alt="{{ $icon->name }}" />
-          </svg>
+          <i class="{{ $icon->image }}" style="color: white;"></i>
         </a>
         @endforeach
       </div>

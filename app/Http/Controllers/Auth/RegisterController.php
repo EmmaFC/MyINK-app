@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RegisterController extends Controller
 {
@@ -52,6 +55,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'image' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +69,37 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create ([
             'name' => $data['name'],
             'email' => $data['email'],
+            'image' => $data['image'],
+            'description' => $data['description'],
             'password' => Hash::make($data['password']),
+            'admin_key' => $data['admin_key'],
         ]);
+
+        if ( $user::where('admin_key', '=', null)){
+            $user->assignRole('user');
+        }
+
+        $user->assignRole('admin');
+
+        return $user;
     }
+
+
+   /*  protected function redirectTo ($user)
+    {
+        if (!$user->hasRole('user')){
+            return view("dashboard");
+        }
+
+        if ($user->hasRole('user')){
+            return view("home");
+        }
+
+        return view("welcome");
+    } */
 }
+
+

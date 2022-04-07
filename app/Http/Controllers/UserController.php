@@ -29,8 +29,7 @@ class UserController extends Controller
     public function index()
     {
         
-        $books = Book::all();
-        return view('pages.home', ['books' => $books]);
+      //
       
     }
     /**

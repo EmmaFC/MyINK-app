@@ -15,13 +15,14 @@ class CategoryController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+      /*   $this->middleware('auth'); */
     }
 
     
     public function index()
     {
-        //
+        $categories ['categories'] = Category::all(); /* ::paginate(15); */
+        return view('livewire.category.index', $categories);
     }
 
     /**
@@ -42,7 +43,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $dataCategory = request()->except('_token');
+        Category::insert($dataCategory);
+        return response()->json($dataCategory);
     }
 
     /**
@@ -53,7 +56,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $category = Category::findOrFail($id);     
+        return view('livewire.category.show', ['category' => $category] );
     }
 
     /**
@@ -62,9 +66,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('livewire.category.edit', compact ('category') );
     }
 
     /**
@@ -74,9 +79,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(/* UpdateCategoryRequest $request, */ Category $id)
     {
-        //
+        $dataCategory = request()->except(['_token', '_method']);
+        Category::where('id', '=', $id)->update($dataCategory);
+        $category = Category::findOrFail($id);
+        return view('livewire.category.edit', compact ('category') );
     }
 
     /**
@@ -85,8 +93,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $id)
     {
-        //
+        Category::destroy($id);
+        return redirect('livewire.category');
     }
 }

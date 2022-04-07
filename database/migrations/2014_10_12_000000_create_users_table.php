@@ -17,11 +17,12 @@ return new class extends Migration
             
             $table->id();
             $table->string('name');
-            $table->string('image');
-            $table->text('description');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('admin_key')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

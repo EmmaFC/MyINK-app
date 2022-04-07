@@ -22,15 +22,15 @@ class BookController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+       /*  $this->middleware('auth'); */
     }
 
     //
     
     public function index()
     { 
-        $books ['books'] = Book::all(); /* ::paginate(15); */
-        return view('book.index', $books);
+        // $books ['books'] = Book::all(); /* ::paginate(15); */
+        // return view('livewire.book.index', $books);
 
     }
 
@@ -103,7 +103,7 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::findOrFail($id);
-        return view('book.edit', compact ('book') );
+        return view('livewire.book.edit', compact ('book') );
 
     }
 
@@ -114,19 +114,19 @@ class BookController extends Controller
     * @return \Illuminate\Http\Response    */
     
 
-    public function update(UpdateBookRequest $request, Book $id)
+    public function update(/* UpdateBookRequest $request,  */Book $id)
     {
         $dataBook = request()->except(['_token', '_method']);
-
+/* 
         if($request->hasFile('cover')){
             $book = Book::findOrFail($id);
             Storage::delete('storage/'.$book->cover);
             $dataBook['cover']=$request->file('cover')->store('storage', 'public');
-        }
+        } */
 
         Book::where('id', '=', $id)->update($dataBook);
         $book = Book::findOrFail($id);
-        return view('book.edit', compact ('book') );
+        return view('livewire.book.edit', compact ('book') );
 
     }
 
@@ -144,7 +144,7 @@ class BookController extends Controller
     public function destroy($id)
     {
         Book::destroy($id);
-        return redirect('book');
+        return redirect('livewire.book');
 
     }
 

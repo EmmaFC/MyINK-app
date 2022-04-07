@@ -21,14 +21,14 @@
                                     @endif
                                 </div> --}}
                                 
-                             {{--    <input id="image" class="input-dark" type="file" name="image" placeholder="{{ __('imagen de perfil') }}" @error('image') is-invalid @enderror" required autocomplete="current-image">
+                                <input id="image" class="input-dark" type="text" name="image" value="https://picsum.photos/200/300" {{-- placeholder="{{ __('imagen de perfil') }}" --}} @error('image') is-invalid @enderror" required autocomplete="current-image">
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
- --}}
-                                <input id="name" type="text" class="input-dark @error('name') is-invalid @enderror" 
+
+                                <input id="name" type="text" class="input-dark" @error('name') is-invalid @enderror" 
                                 name="name" 
                                 placeholder="{{ __('Name') }}"
                                 value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -39,7 +39,14 @@
                                     </span>
                                 @enderror
                          
-                                <input id="email" type="email" class="input-dark @error('email') is-invalid @enderror" 
+                                <input id="description" class="input-dark" type="text" name="description" value="{{ __('description') }}" placeholder="{{ __('description') }}" @error('description') is-invalid @enderror" required autocomplete="current-description">
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                                <input id="email" type="email" class="input-dark" @error('email') is-invalid @enderror" 
                                 placeholder="{{ __('Email Address') }}" name="email" 
                                 value="{{ old('email') }}" required autocomplete="email">
 
@@ -49,7 +56,7 @@
                                     </span>
                                 @enderror
                         
-                                <input id="password" type="password" class="input-dark @error('password') is-invalid @enderror" 
+                                <input id="password" type="password" class="input-dark" @error('password') is-invalid @enderror" 
                                 placeholder="{{ __('Password') }}" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -60,7 +67,11 @@
                             
                                 <input id="password-confirm" type="password" class="input-dark" 
                                 placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required autocomplete="new-password">
-                            
+                                
+                                
+                                <input id="admin_key" type="password" class="input-dark" name="admin_key" value="null">
+
+                               
                         </div>
                          
                         <div class="fluid mt-4 mb-4 d-flex justify-content-between align-content-center">

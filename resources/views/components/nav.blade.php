@@ -2,7 +2,7 @@
     @guest
   
         @if (Route::has('login') || Route::has('register'))
-            <button class="card" type="button">
+            <button  type="button">
                 <a  href="{{ route('admin-login') }}"><p class="nav-text-dark">{{ __('admin acces') }}</p></a>
             </button>
             <button  type="button">
