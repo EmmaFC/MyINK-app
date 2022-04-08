@@ -1,4 +1,4 @@
-<footer class=" {{-- navbar fixed-bottom  --}} navbar-expand-md navbar-dark shadow-sm">
+<footer class=" {{-- navbar  --}} fixed-bottom  navbar-expand-md navbar-dark shadow-sm">
     <div class="d-flex flex-row justify-content-between align-content-center">
       <div class="text-center d-flex align-content-end">
          <h6>Copyright {{ $companies->first()->name }} &copy;</h6>

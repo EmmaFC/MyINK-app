@@ -1,3 +1,25 @@
-<div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
-</div>
+{{-- FORMULARIO CON DATOS EN COMÚN CON CREATE Y EDIT --}}
+
+    <form action="{{ url('/category') }}" method="post" enctype="multipart/form-data"{{-- archivos tipo img --}}>
+      @csrf
+
+      <div class="container-second">
+          <div class="container-second">
+
+              <input id="name" class="input-dark" type="text" name="name" value="{{ isset($category->name)? $category->name : ''  }}" placeholder="{{ __('nombre') }}" @error('name') is-invalid @enderror" required autocomplete="current-name">
+              @error('name')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+
+          </div>
+          <div class="container-second mt-4 mb-4 d-flex justify-content-between align-content-center">
+              <a href="{{ route('category') }}"><h4 class="text-link-dark">Volver</h4></a>
+              <a href="{{ route('category') }}"><h4 class="text-link-dark">Guardar</h4></a>
+          </div>
+      </div>
+    </form>
+
+
+  

@@ -54,7 +54,7 @@ Route::group (['middleware' => 'auth'], function() {
 
         Route::get('/home', [HomeController::class, 'index'])->name('home');
         Route::get('/profile/{id}', [UserController::class, 'show'])->name('profile');
-        Route::get('/book/{id}', [BookController::class, 'show'])->name('book-detail');
+        Route::get('/book/{book}', [BookController::class, 'show'])->name('book-detail');
         
         Route::get('/checkfavorite/{id}', [FavoritesController::class, 'checkFavorite'])->name('checkfavorite');
         Route::get('/checkranking/{id}', [RankingController::class, 'checkRanking'])->name('checkranking');
@@ -62,7 +62,16 @@ Route::group (['middleware' => 'auth'], function() {
         /* Route::group (['middleware' => ['role:admin|admin VIP|superadmin']], function () { */
                 
                 Route::resource('category', CategoryController::class);
-                Route::resource('book', BookController::class);
+                // Route::resource('book', BookController::class);
+
+                Route::get('/book', [BookController::class, 'index'])->name('book.index');
+                Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+                Route::get('/book', [BookController::class, 'store'])->name('book.store'); 
+                Route::get('/book/{book}/edit', [BookController::class, 'edit'])->name('book.edit');
+                Route::get('/book/{book}', [BookController::class, 'update'])->name('book.update'); 
+                Route::get('/book/{book}', [BookController::class, 'destroy'])->name('book.destroy'); 
+
+
 /*                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');  */                
                 Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
                 Route::get('/category', [CategoryController::class, 'index'])->name('category.index'); 
@@ -76,10 +85,7 @@ Route::group (['middleware' => 'auth'], function() {
                                 
                                 Route::resource('role', RolController::class);
                                 
-                                /*  Route::get('/book', [BookController::class, 'index'])->name('book.index');
-                                Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
-                                Route::get('/book/edit', [BookController::class, 'edit'])->name('book.edit');
-                                Route::get('/book/delete', [BookController::class, 'delete'])->name('book.delete'); */
+                               
                                 
                /*          });
                 });

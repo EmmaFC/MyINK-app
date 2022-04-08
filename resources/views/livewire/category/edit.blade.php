@@ -11,7 +11,7 @@
         <form action="{{ url('/category/'.$category->id) }}" method="post" enctype="multipart/form-data"{{-- archivos tipo img --}}>
           @csrf
           {{ method_field('PATCH') }}
-          @include('category.form');
+          @livewire('category.form', ['category' => $category])
         </form>
 
       </div>

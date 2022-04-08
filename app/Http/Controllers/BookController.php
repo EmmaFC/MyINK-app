@@ -13,141 +13,99 @@ use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
-    public function __construct()
-    {
-       /*  $this->middleware('auth'); */
-    }
-
-    //
     
-    public function index()
+    public function __construct()
+    { 
+        /*  $this->middleware('auth'); */
+    }
+    
+
+    /** * @return \Illuminate\Http\Response 
+        * I N D E X
+    */
+    public function index() 
     { 
         // $books ['books'] = Book::all(); /* ::paginate(15); */
         // return view('livewire.book.index', $books);
-
     }
 
     
+    /** * @param  \App\Models\Book $book
+        * @return \Illuminate\Http\Response 
+        * S H O W 
+    */
+    public function show($book) 
+    {        
+        return view('pages.book-detail', ['book' => $book] );
+    }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
-    //
-
-    public function create()
+    /** * @return \Illuminate\Http\Response 
+        * C R E A T E  
+    */
+    public function create() 
     {
-        //
+        return view('livewire.book.create');
     }
+    
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBookRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    //
-
-    public function store(StoreBookRequest $request)
+    /** * @param  \App\Http\Requests\StoreBookRequest $request   
+        * @return \Illuminate\Http\Response 
+        * S T O R E 
+    */
+    public function store(Request $request) 
     {
         $dataBook = request()->except('_token');
 
         if($request->hasFile('cover')){
             $dataBook['cover']=$request->file('cover')->store('storage', 'public');
         }
-
         Book::insert($dataBook);
-        return response()->json($dataBook);
-       
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-
-
-    //
-
-    public function show($id)
-    {        
-       $book = Book::findOrFail($id);     
-       return view('pages.book-detail', ['book' => $book] );
-   
+        /*   $book = response()->json($dataBook); */
+        return redirect()->route('livewire.book.index');
+        /*   return view('livewire.book.create', ['book' => $book] ); */
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-
-
-    //
-
-    public function edit($id)
+    /** * @param  \App\Models\Book $book
+        * @return \Illuminate\Http\Response 
+        * E D I T 
+    */
+    public function edit($book) 
     {
-        $book = Book::findOrFail($id);
-        return view('livewire.book.edit', compact ('book') );
-
+        return view('livewire.book.edit', ['book' => $book]);
     }
 
 
-    /**  Update the specified resource in storage. 
-    * @param  \App\Http\Requests\UpdateBookRequest  $request
-    * @param  \App\Models\Book  $book
-    * @return \Illuminate\Http\Response    */
-    
-
-    public function update(/* UpdateBookRequest $request,  */Book $id)
+    /** * @param  \App\Http\Requests\UpdateBookRequest $request
+        * @param  \App\Models\Book  $book
+        * @return \Illuminate\Http\Response 
+        * U P D A T E 
+    */
+    public function update(/* UpdateBookRequest $request,  */Book $book) 
     {
         $dataBook = request()->except(['_token', '_method']);
-/* 
+        /* 
         if($request->hasFile('cover')){
-            $book = Book::findOrFail($id);
+            $book = Book::findOrFail($book);
             Storage::delete('storage/'.$book->cover);
             $dataBook['cover']=$request->file('cover')->store('storage', 'public');
-        } */
-
-        Book::where('id', '=', $id)->update($dataBook);
-        $book = Book::findOrFail($id);
+        } 
+        */
+        Book::where('id', '=', $book)->update($dataBook);
+        $book = Book::findOrFail($book);
         return view('livewire.book.edit', compact ('book') );
-
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-
-
-    //
-
-    public function destroy($id)
+    /** * @param  \App\Models\Book $book
+        * @return \Illuminate\Http\Response  
+        * D E S T R O Y 
+    */
+    public function destroy($book) 
     {
-        Book::destroy($id);
+        Book::destroy($book->id);
         return redirect('livewire.book');
-
     }
-
-
     
 }

@@ -12,6 +12,7 @@
           @csrf
           {{ method_field('PATCH') }}
           @include('livewire.contactlinks.form');
+          
         </form>
 
       </div>
